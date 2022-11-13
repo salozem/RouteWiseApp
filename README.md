@@ -61,8 +61,10 @@ python -m flask run
 El [venv](https://docs.python.org/3/library/venv.html) módulo admite la creación de "entornos virtuales" livianos, cada uno con su propio conjunto independiente de paquetes de Python instalados en sus site directorios. Se recomienda el uso de entornos virtuales para proyectos de desarrollo de software que, por lo general, se derivan de un solo script de Python, y Python proporciona múltiples formas de crear y usar un entorno virtual.
 
 Para usar venv en su terminal ejecute los siguientes comandos
-py -m venv env
 
+```shell
+py -m venv env
+```
 ### Activar el entorno virtual
 
 .\env\Scripts\activate
@@ -73,17 +75,21 @@ pip list
 
 ### Descargar las dependencias necesarias
 
+```shell
 py -m pip install --upgrade pip
 pip install Flask
 pip install perlin-noise  
+```
 
 ### Setup para correr una aplicacion web usando Flask y Python3
 
+```shell
 cd "Your project path"
 set FLASK_APP=tfapp
 set FLASK_DEBUG=1
 
 flask run
+```
 
 Comando para cambiar de puerto de ejecución
 python -m flask run -p 5000
