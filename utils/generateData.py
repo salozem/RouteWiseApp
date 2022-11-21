@@ -41,8 +41,25 @@ def initGraph(documentPath):
     return graph
 
 
-graph = initGraph("dto/lima_district_streets.json")
+graph = initGraph("../dto/lima_district_streets.json")
 
 with open("lima_adjacency_list.json", mode="w", encoding="utf-8") as f:
     adjacencyList = json.dumps(graph.adjacencyList)
     f.write(adjacencyList)
+
+# Extract edges from the district of Lima
+
+
+def map_edges_keys(edges):
+    return [{"key": k, "value": v} for k, v in edges.items()]
+
+
+with open("lima_streets.json", mode="w", encoding="utf-8") as f:
+    lima_streets = json.dumps(map_edges_keys(graph.edges))
+    f.write(lima_streets)
+
+# Extract intersectuibs from the district of Lima
+
+with open("intersections.json", mode="w", encoding="utf-8") as f:
+    intersection = json.dumps(graph.nodes)
+    f.write(intersection)
