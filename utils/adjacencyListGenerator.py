@@ -62,3 +62,15 @@ def generateAdjacencyList(listPath, streetPath):
 
         initializeData()
         return newAdjacencyList()
+
+def generateListForUI(interPath):
+    with open(interPath) as file:
+        data = json.load(file)
+        data = [(int(key), (value['x'], value['y'])) for key, value in data.items()]
+        data = sorted(data, key=lambda x: x[0])
+
+    locations = []
+    for k, v in data:
+        locations.append(v)
+
+    return locations
