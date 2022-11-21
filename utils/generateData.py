@@ -42,3 +42,7 @@ def initGraph(documentPath):
 
 
 graph = initGraph("dto/lima_district_streets.json")
+
+with open("lima_adjacency_list.json", mode="w", encoding="utf-8") as f:
+    adjacencyList = json.dumps(graph.adjacencyList)
+    f.write(adjacencyList)
