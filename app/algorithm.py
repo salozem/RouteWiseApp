@@ -1,17 +1,21 @@
 import json
-import random as r
 import math
 import heapq as hq
-from perlin_noise import PerlinNoise
+import sys
+import os
+sys.path.append(os.path.abspath("../utils"))
+from adjacencyListGenerator import generateAdjacencyList, generateListForUI
 
 
 def transform_city_graph():
-    adjacencyList= "../dto/lima_adjacency_list.json"
-    street = "../dto/lima_district_streets.json"
-    intersections = "../dto/intersecciones.json"
+    adjacencyList = "../dto/lima_adjacency_list.json"
+    street = "../dto/lima_streets.json"
+    intersections = "../dto/intersections.json"
+    G = generateAdjacencyList(adjacencyList, street)
+    Loc = generateListForUI(intersections)
     return G, Loc
 
-G, Loc= transform_city_graph()
+G, Loc = transform_city_graph()
 
 
 def bfs(G, s):
