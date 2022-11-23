@@ -15,7 +15,7 @@ def transform_city_graph():
     Loc = generateListForUI(intersections)
     return G, Loc
 
-G, Loc = transform_city_graph()
+
 
 
 def bfs(G, s):
@@ -55,35 +55,47 @@ def dfs(G, s, t):
     return path
 
 
-def dijkstra(G, s):
+def dijkstra(G, s, t):
     n = len(G)
     visited = [False]*n
     path = [-1]*n
     cost = [math.inf]*n
 
+    top = 0
+    posh = [0, 0]
     cost[s] = 0
-    pqueue = [(0, s)]
-    while pqueue:
-        g, u = hq.heappop(pqueue)
-        if not visited[u]:
-            visited[u] = True
-            for v, w in G[u]:
+    pq = [(0, s)]
+
+    while pq:
+        cdis, ci = hq.heappop(pq)
+        if not visited[ci]:
+            visited[ci] = True
+            for v, w in G[ci]:
                 if not visited[v]:
-                    f = g + w
-                    if f < cost[v]:
-                        cost[v] = f
-                        path[v] = u
-                        hq.heappush(pqueue, (f, v))
+                    d = cdis + w
+                    if d < cost[v]:
+                        cost[v] = d
+                        path[v] = ci
+                        hq.heappush(pq, (d, v))
 
-    return path, cost
+    head = t
+    while path[head] != -1:
+        for n, w in G[head]:
+            if w > top:
+                top = w
+                posh = [v, head]
+        head = path[head]
 
+    return path, cost, posh
+
+G, Loc = transform_city_graph()
 
 def graph():
     return json.dumps({"loc": Loc, "g": G})
 
 
 def paths(s, t):
-    bestpath, _ = dijkstra(G, s)
+    bestpath, _, h = dijkstra(G, s, t)
     path1 = bfs(G, s)
     path2 = dfs(G, s, t)
 
