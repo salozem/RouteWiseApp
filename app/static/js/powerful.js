@@ -88,9 +88,9 @@
     }
     render(points, d => color, 4)
   }
-  dealWithPath(paths.bestpath, "rgba(0, 128, 0, 0.5)")
-  dealWithPath(paths.path1, "rgba(255, 165, 0, 0.5)")
-  dealWithPath(paths.path2, "rgba(220,  20, 60, 0.5)")
+  dealWithPath(paths.bestpath, "rgba(26, 118, 26, 0.5)")
+  dealWithPath(paths.path1, "rgba(134, 89, 4, 0.5)")
+  dealWithPath(paths.path2, "rgba(44, 167, 197, 0.5)")
 
   ctx.fillStyle = "LimeGreen";
   ctx.fillRect(x(graph.loc[s]) - 5, y(graph.loc[s]) - 5, 10, 10)
